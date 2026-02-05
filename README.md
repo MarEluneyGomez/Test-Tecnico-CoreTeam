@@ -42,9 +42,9 @@ Este script interactúa directamente con httpbin.org y realiza las siguientes op
 - Manejo de cookies y sesiones mediante requests.Session().
 - Simulación de acceso denegado (403) utilizando el endpoint /status/403.
 - Extracción de datos: 
-    - JSON desde /get, guardado en out/datos.json.
-    - XML desde /xml, parseado con lxml y guardado en out/datos.xml.
-    - HTML desde /html, extrayendo el <title> de la página y guardándolo en out/titulo.html.
+    - JSON desde /get, guardado en out/datos_cliente_http.json.
+    - XML desde /xml, parseado con lxml y guardado en out/datos_cliente_http.xml.
+    - HTML desde /html, extrayendo el <title> de la página y guardándolo en out/titulo_cliente_http.html.
 - Envío de formulario mediante POST al endpoint /post.
 - Manejo de redirecciones usando /redirect-to?url=/get.
 
@@ -202,9 +202,9 @@ Qué hace:
    - p90_por_endpoint.png: barra con el promedio de p90_elapsed_ms por endpoint.
 
 - Renderiza el reporte HTML utilizando la plantilla templates/reporte.html, reemplazando placeholders por contenido dinámico: 
-- {{{TABLA_KPI}}} → tabla HTML del dataframe
-- {{{IMG_REQUESTS}}} → `requests.png`
-- {{{IMG_P90}}} → `p90_por_endpoint.png`
+    - {{{TABLA_KPI}}} → tabla HTML del dataframe
+    - {{{IMG_REQUESTS}}} → `requests.png`
+    - {{{IMG_P90}}} → `p90_por_endpoint.png`
 
 Ejecución:
 ```bash
@@ -218,4 +218,5 @@ Salidas generadas (en `out/report/`):
 - `kpi_diario.html`
 - `requests.png`
 - `p90_por_endpoint.png`
+
 
