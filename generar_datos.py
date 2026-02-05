@@ -2,6 +2,7 @@ import argparse
 import json
 import random
 from datetime import datetime, timedelta, timezone
+import sys
 
 ENDPOINTS = ["/get", "/post", "/status/403", "/basic-auth", "/cookies", "/xml", "/html"]
 
@@ -13,6 +14,10 @@ def parse_args():
     return parser.parse_args()
 
 def generar_timestamp() -> str:
+    """
+    Genera un timestamp UTC en formato ISO 8601.
+    El timestamp se ubica aleatoriamente dentro de los últimos 3 días.
+    """
     ahora = datetime.now(timezone.utc)
     delta = timedelta(
         days=random.randint(0, 3),
@@ -21,6 +26,12 @@ def generar_timestamp() -> str:
     return (ahora - delta).isoformat() + "Z"
 
 def generar_status(endpoint: str) -> int:
+    """
+    Genera un status code coherente con el endpoint:
+    - /status/403 siempre devuelve 403
+    - El resto devuelve 200 en el 90% de los casos
+    - El 10% restante se reparte entre errores 4xx y 5xx
+    """
     if endpoint == "/status/403":
         return 403
     return 200 if random.random() < 0.9 else random.choice([400,500])
@@ -41,10 +52,18 @@ def generar_archivo(n:int, salida:str):
             f.write(json.dumps(generar_registro()) + "\n")
 
 def main():
-    args = parse_args()
-    if args.seed is not None:
-        random.seed(args.seed)
-    generar_archivo(args.n_registros, args.salida)
+    try:
+        args = parse_args()
+
+        if args.seed is not None:
+            # Permite reproducir exactamente los mismos datos
+            random.seed(args.seed)
+
+        generar_archivo(args.n_registros, args.salida)
+
+    except Exception as e:
+        print(f"Error: {e}", file=sys.stderr)
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
