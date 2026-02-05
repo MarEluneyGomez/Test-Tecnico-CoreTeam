@@ -97,7 +97,7 @@ Los endpoints se normalizan eliminando parámetros y valores variables (por ejem
 
 Ejecución:
 ```bash
-python calcular_kpi.py --input out/datos.jsonl --output out/kpi_por_endpoint_dia.csv *FALTA*
+python calcular_kpi.py --input out/datos.jsonl --output out/kpi_por_endpoint_dia.csv
 ```
 ---
 # ETL KPI Diarios (Pentaho PDI / Spoon)
@@ -218,5 +218,6 @@ Salidas generadas (en `out/report/`):
 - `kpi_diario.html`
 - `requests.png`
 - `p90_por_endpoint.png`
+
 
 
