@@ -34,7 +34,7 @@ Requisitos adicionales:
 - Pentaho Data Integration (Spoon)
 - Base de datos SQLite: `data/kpi.db` (se crea o reutiliza según configuración)
 
-# Uso
+# Clinete HTTP - `cliente_http.py`
 
 Este script interactúa directamente con httpbin.org y realiza las siguientes operaciones:
 
@@ -218,3 +218,4 @@ Salidas generadas (en `out/report/`):
 - `kpi_diario.html`
 - `requests.png`
 - `p90_por_endpoint.png`
+
